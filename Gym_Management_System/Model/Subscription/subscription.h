@@ -17,24 +17,30 @@ private:
     stDate StartDate;
 public:
     Subscription();
+
+    // constructor for Load Data from File
     Subscription(enSubscriptionPeriod Period, enSubscriptionType Type,
                  enStatus Status, float Price, stDate StartDate);
-    Subscription(const Subscription& other)
-        : Period(other.Period), Type(other.Type), Status(other.Status),
-        Price(other.Price), StartDate(other.StartDate) {}
+
+    // constructor for Create new subscription for member
+
+    Subscription(enSubscriptionPeriod Period, enSubscriptionType Type);
+
+    // Setter
     void setPeriod(enSubscriptionPeriod SubscriptionPeriod);
     void setType(enSubscriptionType SubscriptionType);
     void setStatus(enStatus Status);
     void setPrice(float Price);
     void setStartDate(stDate StartDate);
 
-    enSubscriptionPeriod getPeriod();
-    enSubscriptionType  getType();
-    enStatus getStatus();
-    float getPrice();
-    stDate getStartDate();
+    //Getter
+    enSubscriptionPeriod getPeriod() const ;
+    enSubscriptionType  getType() const;
+    enStatus getStatus() const;
+    float getPrice() const ;
+    stDate getStartDate() const;
 
-    void Renew(enSubscriptionPeriod period, bool IsVIP);
+    void Renew(enSubscriptionPeriod period, enSubscriptionType Type);
     void Cancel();
     void Reactivate();
 };
