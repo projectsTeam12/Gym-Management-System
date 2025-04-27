@@ -12,7 +12,7 @@ PadelCourt::PadelCourt(int Id, bool IsAvailable, string Location, float Price)
 PadelCourt::PadelCourt(float Price)
 {
 	this->Id = nextid++;
-	this->IsAvailable = true;
+	this->IsAvailable = true;	
 	this->Location = "Unknown";
 	this->Price = Price;
 }	
