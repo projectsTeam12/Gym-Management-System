@@ -32,11 +32,11 @@ void Member::AddWorkout(Workout workout){this->Workouts.push_back(workout) ;}
 void Member::BookClass(int ClassId){ClassesBookingManagement::BookClass(ClassId,this->Id);}
 void Member::CancelBookClass(int ClassId){ClassesBookingManagement::CancelBook(ClassId,this->Id);}
 vector<GymClass> Member::ViewClassBooks() const {return ClassesBookingManagement::getBookingByMember(this->Id);};
-void Member::JoinToClassWaitlist(int ClassId) {ClassesBookingManagement::JoinToWaitlist(ClassId,this->Id)};
-vector<GymClass> Member::ViewClassesWaitlist() const ;
+void Member::JoinToClassWaitlist(int ClassId) {ClassesBookingManagement::JoinToWaitlist(ClassId,this->Id);}
+vector<GymClass> Member::ViewClassesWaitlist() const { return ClassesBookingManagement::getWaitlistsForMember(this->Id);}
 
 // Court Management
-void Member::BookCourt(int CourtId);
+void Member::BookCourt(int CourtId){};
 void Member::CancelBookCourt(int CourtId);
 vector<PadelCourt> Member::ViewCourtBooks();
 void Member::ReschedualingCourtBooking(int CourtId , tm*Time);
