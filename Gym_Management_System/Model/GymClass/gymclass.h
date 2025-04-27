@@ -3,6 +3,7 @@
 
 #pragma once
 #include <iostream>
+#include <ctime>
 using namespace std;
 enum enDays { Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday };
 class GymClass

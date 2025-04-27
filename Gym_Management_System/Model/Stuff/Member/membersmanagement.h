@@ -4,16 +4,19 @@
 #pragma once
 #include <iostream>
 #include "Model/Stuff/Member/member.h"
+#include "bits/stdc++.h"
 using namespace std;
 class MembersManagement
 {
 private:
     list<Member>Members;
 public:
-    void AddMember(Member member);
-    bool RemoveMember(Member member);
-    vector<Member*> SearchMemberInfo(int MemberId);
-    vector<Member*> getExpiringMemberShipList();
+	void Add_Member(Member member);
+	void edit_member(int Id);
+	void delete_member(int Id)
+	Member SearchMemberInfo(int Id);
+	vector<Member*> getExpiringMemberShipList();
+	void Renew_sub((int Id);
 };
 
 
