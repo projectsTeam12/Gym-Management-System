@@ -1,3 +1,4 @@
 #include "subscription.h"
 
-Subscription::Subscription() {}
+Subscription::Subscription() {
+}

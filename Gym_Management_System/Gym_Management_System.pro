@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+    quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,9 +26,10 @@ SOURCES += \
     Model/Stuff/stuffmanagement.cpp \
     Model/Subscription/subscription.cpp \
     Model/Subscription/subscriptionmanager.cpp \
-    Model/Workout&Exercises/exercise.cpp \
-    Model/Workout&Exercises/workout.cpp \
-    main.cpp
+    Model/WorkoutAndExercises/exercise.cpp \
+    Model/WorkoutAndExercises/workout.cpp \
+    main.cpp \
+    mainwindow.cpp \
 
 HEADERS += \
     Model/GymClass/classesbookingmanagement.h \
@@ -37,7 +39,6 @@ HEADERS += \
     Model/PadelCourt/padelcourtbookingmanagement.h \
     Model/PadelCourt/padelcourtmanagement.h \
     Model/Settings/systemanalytics.h \
-    Model/Stuff/Date.h \
     Model/Stuff/Member/member.h \
     Model/Stuff/Member/membersmanagement.h \
     Model/Stuff/coach.h \
@@ -45,16 +46,19 @@ HEADERS += \
     Model/Stuff/manager.h \
     Model/Stuff/person.h \
     Model/Stuff/receptionist.h \
+    Model/Stuff/stDate.h \
     Model/Stuff/stuffmanagement.h \
     Model/Subscription/enStatus.h \
     Model/Subscription/enSubscriptionPeriod.h \
     Model/Subscription/enSubscriptionType.h \
     Model/Subscription/subscription.h \
     Model/Subscription/subscriptionmanager.h \
-    Model/Workout&Exercises/exercise.h \
-    Model/Workout&Exercises/workout.h
+    Model/WorkoutAndExercises/exercise.h \
+    Model/WorkoutAndExercises/workout.h \
+    mainwindow.h
 
-FORMS +=
+FORMS += \
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

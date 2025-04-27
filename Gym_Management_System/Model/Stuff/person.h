@@ -3,30 +3,34 @@
 
 #pragma once
 #include <iostream>
-#include "Model/Stuff/Date.h"
+#include "Model/Stuff/stDate.h"
 using namespace std;
 class Person
 {
 protected:
     string Name;
     string Phone;
-    Date BirthOfDate;
+    stDate BirthDate;
     string UserName;
     string Password;
 public:
-    Person(string Name, string Phone, Date BirthOfDate, string UserName, string Password);
+    Person(string Name, string Phone, stDate BirthDate, string UserName, string Password);
 
+    //Getter
+    string getName() const;
+    string getPhone() const;
+    stDate& getBirthDate() const;
+    string getUserName() const;
+    string getPassword() const;
+
+    //Setter
     void setName(string Name);
     void setPhone(string Phone);
-    void setDateOfBirth(Date BithOfDate);
+    void setBirthDate(stDate BirthDate);
     void setUserName(string UserName);
     void setPassword(string Password);
 
-    string getName();
-    string getPhone();
-    Date getBirthOfDate();
-    string getUserName();
-    string getPassword();
+    
 };
 
 
