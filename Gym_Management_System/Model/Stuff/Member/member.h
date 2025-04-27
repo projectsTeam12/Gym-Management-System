@@ -48,8 +48,8 @@ public:
     vector<GymClass> ViewClassesWaitlist() const ;
 
     // Court Management
-    void BookCourt(int CourtId);
-    void CancelBookCourt(int CourtId);
+    void BookCourt(int CourtId ,tm*Time);
+    void CancelBookCourt(int CourtId,tm*Time);
     vector<PadelCourt> ViewCourtBooks();
     void ReschedualingCourtBooking(int CourtId , tm*Time);
 };

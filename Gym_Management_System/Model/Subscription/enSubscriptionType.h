@@ -3,7 +3,7 @@
 #pragma once
 enum enSubscriptionType
 {
-    Regular = 1,
-    VIP = 2
+    Regular = 0,
+    VIP = 1
 };
 #endif // ENSUBSCRIPTIONTYPE_H

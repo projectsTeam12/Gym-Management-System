@@ -1,5 +1,7 @@
 #include "member.h"
 #include "Model/GymClass/classesbookingmanagement.h"
+#include "Model/PadelCourt/padelcourtbookingmanagement.h"
+
 Member::Member(int Id, std::string Name, std::string Phone, stDate BirthDate, std::string UserName,
                std::string Password, Subscription subscription, std::vector<Workout> workouts)
     : Person(Name, Phone, BirthDate, UserName, Password)
@@ -36,7 +38,7 @@ void Member::JoinToClassWaitlist(int ClassId) {ClassesBookingManagement::JoinToW
 vector<GymClass> Member::ViewClassesWaitlist() const { return ClassesBookingManagement::getWaitlistsForMember(this->Id);}
 
 // Court Management
-void Member::BookCourt(int CourtId){};
-void Member::CancelBookCourt(int CourtId);
-vector<PadelCourt> Member::ViewCourtBooks();
-void Member::ReschedualingCourtBooking(int CourtId , tm*Time);
+void Member::BookCourt(int CourtId, tm*Time) {PadelCourtBookingManagement::BookCourt(this->Id ,CourtId ,Time);}
+void Member::CancelBookCourt(int CourtId , tm*Time) {PadelCourtBookingManagement::CancelCourt(this->Id ,CourtId ,Time);}
+vector<PadelCourt> Member::ViewCourtBooks(){return PadelCourtBookingManagement::GetBookingByMember(this->Id);}
+void Member::ReschedualingCourtBooking(int CourtId , tm*Time){PadelCourtBookingManagement::ReschedualingCourtBooking(this->Id,CourtId,Time);}
