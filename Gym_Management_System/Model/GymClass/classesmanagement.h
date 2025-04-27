@@ -17,6 +17,7 @@ private:
     unordered_map<int, vector<int>> CoachClasses;  // coachId and his classesID
    
 public:
+
    void AddClass(GymClass Class);
    void DeleteClass(int ClassId);
    void ReschedualTime_Date(int ClassId , tm* Time, enDays Day);
@@ -26,6 +27,8 @@ public:
    vector<GymClass*> GetCoachClasses(int CoachId);
    vector<GymClass*> GetAllClasses();
    
+
+
 
 };
 

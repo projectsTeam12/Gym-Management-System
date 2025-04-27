@@ -14,7 +14,7 @@ private:
 public:
     static void BookCourt(int MemberId, int CourtId, tm* Time);
     static void CancelCourt(int MemberId, int CourtId, tm* Time);
-    static vector<PadelCourt*> GetBookingByMember(int MemberId);
+    static vector<PadelCourt> GetBookingByMember(int MemberId);
     static bool ReschedualingCourtBooking(int MemberId, int CourtId, tm* Time);
 };
 
