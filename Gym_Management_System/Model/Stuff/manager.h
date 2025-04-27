@@ -7,7 +7,7 @@
 class Manager : public Person
 {
 public:
-    Manager(string Name, string Phone, Date BirthOfDate, string UserName, string Password);
+    Manager(string Name, string Phone, stDate BirthDate, string UserName, string Password);
 };
 
 

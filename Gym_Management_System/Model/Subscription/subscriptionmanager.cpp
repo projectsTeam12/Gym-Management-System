@@ -1,3 +1,2 @@
-#include "subscriptionmanager.h"
+#include "Model/Subscription/subscriptionmanager.h"
 
-SubscriptionManager::SubscriptionManager() {}
