@@ -1,5 +1,8 @@
 #include "receptionist_Model.h"
 
+Receptionist(int Id, string Name, Shift shift, string Phone, date BirthDate, string UserName, string passwd)
+	: receptionistID(Id), Name(Name), shift(shift), Phone(Phone), BirthDate(BirthDate), UserName(UserName), passwd(passwd) {
+}
 
 // getters
 string  Receptionist::get_name() {
@@ -18,7 +21,11 @@ string  Receptionist::get_passwd() {
 	return Password;
 }
 int  Receptionist::get_id() {
-	return Id;
+	return receptionistID;
+}
+
+Shift Receptionist::get_shift() {
+	return shift;
 }
 
 
@@ -41,7 +48,9 @@ void  Receptionist::set_passwd(string passwd) {
 	Password= passwd;
 }
 void  Receptionist::set_id(int id) {
-     Id = id;
+	receptionistID = id;
 }
-
+void set_shift(Shift shift) {
+	this->shift = shift;
+}
 

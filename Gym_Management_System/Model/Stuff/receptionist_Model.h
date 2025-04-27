@@ -9,7 +9,7 @@ enum Shift {Moring , Afternoon , Night };
 class Receptionist : public Person
 {
 private:
-    const int Id;
+    const int receptionistID;
     Shift shift;
 
 
