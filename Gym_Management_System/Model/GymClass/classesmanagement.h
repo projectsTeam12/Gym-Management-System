@@ -18,9 +18,9 @@ public:
     static void AddClass(GymClass Class);
     static void DeleteClass(int ClassId);
     static void ReschedualTime_Date(int ClassId , tm* Time, enDays Day);
-    static GymClass* SearchClass(int ClassId);
-    static vector<GymClass*> GetCoachClasses(int CoachId);
-    static vector<GymClass*> GetAllClasses();
+    static GymClass SearchClass(int ClassId);
+    static vector<GymClass> GetCoachClasses(int CoachId);
+    static vector<GymClass> GetAllClasses();
 };
 
 #endif // CLASSESMANAGEMENT_H

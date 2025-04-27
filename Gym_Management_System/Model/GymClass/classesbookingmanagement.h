@@ -16,8 +16,8 @@ public:
     static bool BookClass(int ClassId, int MemberId);
     static bool CancelBook(int ClassId, int MemberId);
     static void JoinToWaitlist(int ClassId, int MemberId);
-    static vector<GymClass*> getBookingByMember(int MemberId);
-    static vector<GymClass*> getWaitlistsForMember(int MemberId);
+    static vector<GymClass> getBookingByMember(int MemberId);
+    static vector<GymClass> getWaitlistsForMember(int MemberId);
 };
 
 #endif // CLASSESBOOKINGMANAGEMENT_H
