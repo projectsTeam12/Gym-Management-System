@@ -3,11 +3,14 @@
 
 #pragma once
 #include <iostream>
+#include <vector>
+#include <list>
 using namespace std;
+
 class Exercise
 {
 private:
-     int Id;
+    int Id;
     static int nextId;
     string ExerciseName;
     float Weight;
@@ -19,11 +22,24 @@ public:
     void setWeight(float Weight);
     void setRepetition(int Repetition);
 
-    int getId();
-    string getExerciseName();
-    float gerWeight();
-    int gerRepetition();
+    int getId() const;
+    string getExerciseName() const;
+    float getWeight() const;
+    int getRepetition() const;
+    string ToLine() const;
+
+
+    static void SaveToFile(const string& filename, const vector<string>& vData);
+    static vector<string> RecordtoLine(const list<Exercise>& Exercises);
+
+    /// ------------------------------
+    /// static map<int, Exercise> LoadExercisesToMap(const string& filename);
+    /// ------------------------------
+    /// 
+    /// 
+    /// 
+    /// 
+    /// 
 };
 
-
-#endif // EXERCISE_H
+#endif
