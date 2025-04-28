@@ -1,6 +1,6 @@
 #pragma once
 #include<unordered_map>
-#include"Person.h"
+#include"person.h"
 #include<vector>
 class Manager : public Person
 {private:
