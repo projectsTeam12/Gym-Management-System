@@ -7,18 +7,20 @@ using namespace std;
 class PadelCourt
 {
 private:
-    int Id; // added automatically
-    static int nextid;
-    bool IsAvailable;
+    int id; // added automatically
+    bool isAvailable;
     //tm* StartTime;
-    string Location;
-    float Price;
+    string location;
+    float price;
 public:
-    PadelCourt(int Id, bool IsAvailable, string Location, float Price);
-    PadelCourt(float Price);
+    PadelCourt(bool IsAvailable, string Location, float Price);
+	PadelCourt(string line);
+    PadelCourt toLine(PadelCourt padelCourt);
+	void setAutomaticId();
     void setIsAvailable(bool IsAvailable);
     void setLocation(string Location);
     void setprice(float Price);
+
     int getId();
     bool getIsAvailable();
     string getLocation();
