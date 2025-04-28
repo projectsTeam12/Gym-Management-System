@@ -4,7 +4,6 @@
 class Manager : public Person
 {private:
 	double Revenue;
-	string Role;
 	vector<string> offers;
 
 public:
