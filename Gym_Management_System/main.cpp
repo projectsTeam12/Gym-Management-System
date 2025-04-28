@@ -3,24 +3,6 @@
 #include "Exercise.h"
 using namespace std;
 
-
-void displayFileContent(const string& filename) {
-    ifstream file(filename);
-    cout << "\nمحتويات ملف " << filename << ":\n";
-    cout << "----------------------------------------\n";
-    if (file.is_open()) {
-        string line;
-        while (getline(file, line)) {
-            cout << line << endl;
-        }
-        file.close();
-    }
-    else {
-        cout << "لا يمكن فتح الملف للقراءة\n";
-    }
-    cout << "----------------------------------------\n";
-}
-
 int main() {
     
     list<Exercise> exercises = {
