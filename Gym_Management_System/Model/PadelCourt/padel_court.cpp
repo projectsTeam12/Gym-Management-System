@@ -17,17 +17,17 @@ PadelCourt::PadelCourt(float Price)
 	this->Price = Price;
 }	
 
-PadelCourt::setIsAvailable(bool IsAvailable)
+void PadelCourt::setIsAvailable(bool IsAvailable)
 {
 	this->IsAvailable = IsAvailable;
 }
 
-PadelCourt::setLocation(string Location)
+void PadelCourt::setLocation(string Location)
 {
 	this->Location = Location;
 }
 
-PadelCourt::setprice(float Price)
+void PadelCourt::setprice(float Price)
 {
 	this->Price = Price;
 }
@@ -49,4 +49,21 @@ string PadelCourt::getLocation()
 float PadelCourt::getPrice()
 {
 	return this->Price;
+}
+ 
+bool PadelCourt::isAvailableAt(tm* Time)     //added by sw;
+{
+	if (!this->IsAvailable) return false; 
+
+	for (auto& reserved : ReservedTimes)
+	{
+		if (reserved.tm_year == Time->tm_year &&
+			reserved.tm_mon == Time->tm_mon &&
+			reserved.tm_mday == Time->tm_mday &&
+			reserved.tm_hour == Time->tm_hour)
+		{
+			return false; 
+		}
+	}
+	return true; 
 }
