@@ -16,7 +16,7 @@ void Manager::calc_rev() { }
     bool Manager::DeleteEmployee(int EmployeeId, enRole role) {
         return staffManagement.DeleteEmployee(EmployeeId, role);
     }
-    Coach Manager :: SearchCoach(int CoachId) {
+    Coach Manager::SearchCoach(int CoachId) {
         return staffManagement.SearchCoach(CoachId);
     }
 };
