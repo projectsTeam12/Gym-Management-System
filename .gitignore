@@ -1,0 +1,21 @@
+# Ignore Visual Studio generated files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore build folders
+build/
+Debug/
+Release/
+
+# Ignore temporary files
+*.obj
+*.log
+*.tmp
+*.bak
+
+# Ignore executable files
+*.exe
+*.out
