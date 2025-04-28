@@ -15,7 +15,7 @@ private:
 public:
     void AddCoach(Coach coach);
     void AddReceptionist(Receptionist receptionist);
-    bool DeleteEmployee(int EmployeeId, enRole role);
+    void DeleteEmployee(int EmployeeId, enRole role);
     Receptionist SearchReceptionist(int ReceptionistId);
 };
 
