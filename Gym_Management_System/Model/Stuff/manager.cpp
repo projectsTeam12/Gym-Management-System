@@ -1,4 +1,5 @@
 #include "Manager.h"
+#include"stuffmanagement.h"
 #include"membersmanegement.h"
 #include <unordered_map>
 #include<iostream>
