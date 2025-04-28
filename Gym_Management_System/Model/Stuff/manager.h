@@ -9,8 +9,7 @@ class Manager : public Person
 
 public:
 	Manager(string name, string date, string phone, string username, string password);
-	void View_Courts();
-	void Viwe_classes();   
+	void View_Courts();  
 	void add_offers(string offer);
 	double calc_rev();
         void AddCoach(Coach coach);
@@ -18,6 +17,8 @@ public:
         void DeleteEmployee(int EmployeeId, enRole role);
         Coach SearchCoach(int CoachId);
         Receptionist SearchReceptionist(int ReceptionistId);
+        vector<GymClass*> GetAllClasses();
+
 
 
 
