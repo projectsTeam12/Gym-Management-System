@@ -1,38 +1,27 @@
-#ifndef PERSON_H
-#define PERSON_H
-
 #pragma once
-#include <iostream>
-#include "Model/Stuff/stDate.h"
+#include"string"
 using namespace std;
 class Person
 {
-protected:
-    string Name;
-    string Phone;
-    stDate BirthDate;
-    string UserName;
-    string Password;
+private:
+	string Name;
+	string Date;
+	string Phone;
+	string UserName;
+	string PassWord;
 public:
-    Person(string Name, string Phone, stDate BirthDate, string UserName, string Password);
+	Person(string name, string date, string phone, string username, string password);
+	void setName(string  name);
+	void setPhone(string  prhone);
+	void setUserName(string  username);
+	void setPassWord(string  password);
+	void setDate(string  date);
+    string getName();
+	string getPhone();
+	string getUserName();
+	string getPassWord();
+	string getDate();
 
-    //Getter
-    string getName() const;
-    string getPhone() const;
-    stDate& getBirthDate() const;
-    string getUserName() const;
-    string getPassword() const;
-
-    //Setter
-    void setName(string Name);
-    void setPhone(string Phone);
-    void setBirthDate(stDate BirthDate);
-    void setUserName(string UserName);
-    void setPassword(string Password);
-
-    
 };
 
 
-
-#endif // PERSON_H
