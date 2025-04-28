@@ -11,7 +11,7 @@ bool StuffManagement::DeleteEmployee(int EmployeeId, enRole role)
     {
         for (auto it = Coaches.begin(); it != Coaches.end(); ++it)
         {
-            if (it->Getid() == EmployeeId)
+            if (it->get_id() == EmployeeId)
             {
                 Coaches.erase(it);
                 return true;
@@ -22,7 +22,7 @@ bool StuffManagement::DeleteEmployee(int EmployeeId, enRole role)
     {
         for (auto it = Receptionists.begin(); it != Receptionists.end(); ++it)
         {
-            if (it->GetId() == EmployeeId)
+            if (it->get_id() == EmployeeId)
             {
                 Receptionists.erase(it);
                 return true;
@@ -36,7 +36,7 @@ Coach StuffManagement::SearchCoach(int CoachId)
 {
     for (auto it = Coaches.begin(); it != Coaches.end(); ++it)
     {
-        if (it->GetId() == CoachId)
+        if (it->get_id() == CoachId)
         {
             return *it;
         }
@@ -48,7 +48,7 @@ Receptionist StuffManagement::SearchReceptionist(int ReceptionistId)
 {
     for (auto it = Receptionists.begin(); it != Receptionists.end(); ++it)
     {
-        if (it->GetId() == ReceptionistId)
+        if (it->get_id() == ReceptionistId)
         {
             return *it;
         }
