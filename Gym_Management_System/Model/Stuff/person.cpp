@@ -23,17 +23,17 @@ void Person::setPassWord(string password) {
 	PassWord = password;
 }
 string Person::getName() {
-	cout << Name;
+	return Name;
 }
 string Person::getDate() {
-	cout << Date;
+	return Date;
 }
 string Person::getPhone() {
-	cout << Phone;
+	return Phone;
 }
 string Person::getUserName() {
-	cout << UserName;
+	return UserName;
 }
 string Person::getPassWord() {
-	cout<<PassWord;
+	return PassWord;
 }
