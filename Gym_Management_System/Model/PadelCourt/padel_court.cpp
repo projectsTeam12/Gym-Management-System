@@ -1,59 +1,94 @@
-#include "padelcourt.h"
-#include<iostream>
+#include "padel_court.h"
+#include "padel_court_management.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
-PadelCourt::PadelCourt(int Id, bool IsAvailable, string Location, float Price)
+PadelCourt::PadelCourt(bool IsAvailable, string Location, float Price)
 {
-	this->Id = Id;
-	this->IsAvailable = IsAvailable;
-	this->Location = Location;
-	this->Price = Price;
+	setAutomaticId();
+    this->isAvailable = IsAvailable;
+    this->location = Location;
+    this->price = Price;
 }
-PadelCourt::PadelCourt(float Price)
+PadelCourt::PadelCourt(string line)
 {
-	this->Id = nextid++;
-	this->IsAvailable = true;	
-	this->Location = "Unknown";
-	this->Price = Price;
-}	
+    size_t pos = 0;
+    string token;
+    int fieldIndex = 0;
 
+    while ((pos = line.find(',')) != string::npos) {
+        token = line.substr(0, pos);
+        switch (fieldIndex) {
+        case 0:
+            id = stoi(token);
+            break;
+        case 1:
+            isAvailable = (token == "true");
+            break;
+        case 2:
+            location = token;
+            break;
+        }
+        line.erase(0, pos + 1);
+        fieldIndex++;
+    }
+   
+    price = stof(line);
+}	
+void PadelCourt::setAutomaticId() {
+    ifstream readFile;
+    readFile.open("id.txt");
+    if (readFile.is_open()) {
+        readFile >> this->id;
+        readFile.close();
+        ofstream writeFile;
+        writeFile.open("id.txt");
+        writeFile << this->id + 1;
+        writeFile.close();
+    }
+    else {
+        return;
+    }
+}
 void PadelCourt::setIsAvailable(bool IsAvailable)
 {
-	this->IsAvailable = IsAvailable;
+	this->isAvailable = IsAvailable;
 }
 
 void PadelCourt::setLocation(string Location)
 {
-	this->Location = Location;
+	this->location = Location;
 }
 
 void PadelCourt::setprice(float Price)
 {
-	this->Price = Price;
+    this->price = Price;
 }
 
 int PadelCourt::getId()
 {
-	return this->Id;
+	return this->id;
 }
 bool PadelCourt::getIsAvailable()
 {
-	return this->IsAvailable;
+	return this->isAvailable;
 }
 
 string PadelCourt::getLocation()
 {
-	return this->Location;
+	return this->location;
 }
 
 float PadelCourt::getPrice()
 {
-	return this->Price;
+	return this->price;
 }
  
 bool PadelCourt::isAvailableAt(tm* Time)     //added by sw;
 {
-	if (!this->IsAvailable) return false; 
+	if (!this->isAvailable) return false; 
 
 	for (auto& reserved : ReservedTimes)
 	{

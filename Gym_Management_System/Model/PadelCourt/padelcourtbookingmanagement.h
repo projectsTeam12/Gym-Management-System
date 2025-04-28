@@ -3,7 +3,7 @@
 
 #pragma once
 #include <iostream>
-#include "Model/PadelCourt/padelcourt.h"
+#include "padel_court.h"
 #include <vector>
 #include <unordered_map>
 using namespace std;
