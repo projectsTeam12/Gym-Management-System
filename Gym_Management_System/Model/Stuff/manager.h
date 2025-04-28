@@ -13,6 +13,12 @@ public:
 	void Viwe_classes();   
 	void add_offers(string offer);
 	double calc_rev();
+        void AddCoach(Coach coach);
+        void AddReceptionist(Receptionist receptionist);
+        void DeleteEmployee(int EmployeeId, enRole role);
+        Coach SearchCoach(int CoachId);
+        Receptionist SearchReceptionist(int ReceptionistId);
+
 
 
 
