@@ -1,4 +1,4 @@
-#include "Person.h"
+#include "person.h"
 #include<iostream>
 Person::Person(string name, string date, string phone, string username, string password) {
 	this->Name = name;
