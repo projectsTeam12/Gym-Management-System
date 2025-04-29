@@ -7,46 +7,85 @@
 using namespace std;
 
 
-
 PadelCourtManagement::PadelCourtManagement() {
-	// Load courts from file
-	ifstream file;
-	file.open("courts.txt");
-	if (file.is_open()) {
-		string line;
-		while (file >> line) {
-			PadelCourt court = PadelCourt(line);
-			courts.push_back(court);
-		}
-		file.close();
-	}
+	
 }
 
+PadelCourtManagement::~PadelCourtManagement() {
 
+}
 
-string PadelCourtManagement::addCourt(bool isAvailable, string location, float price)
-{
-	fstream file;
+string PadelCourtManagement::loadDataFromFile() {
+	// Load courts including reserved times from file
 	try
 	{
-		file.open("courts.txt", ios::out | ios::app);
-		PadelCourt court = PadelCourt(isAvailable, location, price);
-		courts.push_back(court);
-		file << toLine(court);
-		file.close();
-		return "Court Added";
+		ifstream file;
+		file.open("courts.txt");
+		if (file.is_open()) {
+			string line;
+			while (file >> line) {
+				PadelCourt court = PadelCourt(line);
+				courts.push_back(court);
+			}
+			file.close();
+			return "Courts Loaded";
+		}
+		else {
+			return "Unable to open the file 'courts.txt'";
+		}
 	}
-	catch (const exception&)
+	catch (const std::exception&)
 	{
-		file.close();
-		return "an error happended while adding a court";
+		return "Oops! An error happended while loading the courts from 'courts.txt' file";
 	}
 	
 }
 
+
+string PadelCourtManagement::saveDataToFile() {
+	// save courts including reserved times to file
+	try
+	{
+		ofstream file;
+		file.open("courts.txt");
+		if (file.is_open()) {
+			string line;
+			for (auto& court : courts)
+			{
+				file << toLine(court) << endl;
+			}
+			file.close();
+			return "Courts Loaded";
+		}
+		else {
+			return "Unable to open the file 'courts.txt'";
+		}
+	}
+	catch (const std::exception&)
+	{
+		return "Oops! An error happended while saving the courts to 'courts.txt' file";
+	}
+}
+
+
+
+
+
+
+string PadelCourtManagement::addCourt(string location, float price)
+{
+	//fstream file;
+	//file.open("courts.txt", ios::out | ios::app);
+	PadelCourt court = PadelCourt(location, price);
+	courts.push_back(court);
+	//file << toLine(court);
+	//file.close();
+	return "Court Added";
+}
+
 void PadelCourtManagement::DeleteCourt(int CourtId)
 {
-	for (auto it = courts.begin(); it != courts.end(); ++it)
+	for (auto it = courts.begin(); it != courts.end(); )
 	{
 		if (it->getId() == CourtId)
 		{
@@ -57,22 +96,27 @@ void PadelCourtManagement::DeleteCourt(int CourtId)
 }
 
 
-vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* Time, string Location)
+vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* time, string location)
 {
 	vector<PadelCourt*> foundCourts;
 
 	for (auto& court : courts)
 	{
-		if (court.getLocation() == Location && court.isAvailableAt(Time))
+		if (court.getLocation() == location && court.isAvailableAt(time))
 		{
 			foundCourts.push_back(&court);
 		}
 	}
-
 	return foundCourts;
 }
 
 string PadelCourtManagement::toLine(PadelCourt padelCourt)
 {
-	return to_string(padelCourt.getId()) + "," + to_string(padelCourt.getIsAvailable()) + "," + padelCourt.getLocation() + "," + to_string(padelCourt.getPrice()) + "\n";
+	string reseredTimesLine = "";
+	for (auto& resTime : padelCourt.getReservedTimes())
+	{
+		reseredTimesLine += to_string(resTime.tm_year) + "-" + to_string(resTime.tm_mon) + "-" + to_string(resTime.tm_mday) + " " +
+			to_string(resTime.tm_hour);
+	}
+	return to_string(padelCourt.getId()) + "," + padelCourt.getLocation() + "," + to_string(padelCourt.getPrice()) +"," + reseredTimesLine;
 }

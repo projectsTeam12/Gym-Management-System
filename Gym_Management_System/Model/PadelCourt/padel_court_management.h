@@ -15,10 +15,12 @@ public:
 PadelCourtManagement();
 ~PadelCourtManagement();
 
-   string addCourt(bool isAvailable, string location, float price);
+   string addCourt(string location, float price);
    void DeleteCourt(int CourtId);
-   vector<PadelCourt*> SearchCourt(tm* Time, string Location);
-   string toLine(PadelCourt padelCourt); // Ensure the type PadelCourt is correctly declared here
+   vector<PadelCourt*> SearchCourt(tm* time, string location);
+   string toLine(PadelCourt padelCourt);
+   string loadDataFromFile();
+   string saveDataToFile();
 };
 
 #endif // PADELCOURTMANAGEMENT_H

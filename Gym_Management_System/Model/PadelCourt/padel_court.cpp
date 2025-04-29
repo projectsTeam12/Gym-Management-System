@@ -5,10 +5,10 @@
 #include <string>
 using namespace std;
 
-PadelCourt::PadelCourt(bool IsAvailable, string Location, float Price)
+PadelCourt::PadelCourt(string Location, float Price)
 {
 	setAutomaticId();
-    this->isAvailable = IsAvailable;
+	this->reservedTimes = {};
     this->location = Location;
     this->price = Price;
 }
@@ -25,17 +25,26 @@ PadelCourt::PadelCourt(string line)
             id = stoi(token);
             break;
         case 1:
-            isAvailable = (token == "true");
+            location = token;
             break;
         case 2:
-            location = token;
+            price = stof(line);
             break;
         }
         line.erase(0, pos + 1);
         fieldIndex++;
     }
+    int  pos1 = line.find('_');
+    int pos2 = line.find('_', pos1 + 1);
+    int spacePos = line.find(' ');
+	tm date = {};
+	date.tm_year = stoi(line.substr(0, pos1)); 
+	date.tm_mon = stoi(line.substr(pos1 + 1, pos2 - pos1 - 1)); 
+	date.tm_wday = stoi(line.substr(pos2 + 1, spacePos - pos2 - 1)); 
+	date.tm_hour = stoi(line.substr(spacePos + 1));
+	reservedTimes.push_back(date);
    
-    price = stof(line);
+    
 }	
 void PadelCourt::setAutomaticId() {
     ifstream readFile;
@@ -52,10 +61,7 @@ void PadelCourt::setAutomaticId() {
         return;
     }
 }
-void PadelCourt::setIsAvailable(bool IsAvailable)
-{
-	this->isAvailable = IsAvailable;
-}
+
 
 void PadelCourt::setLocation(string Location)
 {
@@ -71,10 +77,7 @@ int PadelCourt::getId()
 {
 	return this->id;
 }
-bool PadelCourt::getIsAvailable()
-{
-	return this->isAvailable;
-}
+
 
 string PadelCourt::getLocation()
 {
@@ -86,19 +89,20 @@ float PadelCourt::getPrice()
 	return this->price;
 }
  
-bool PadelCourt::isAvailableAt(tm* Time)     //added by sw;
+bool PadelCourt::isAvailableAt(tm* time)  
 {
-	if (!this->isAvailable) return false; 
-
-	for (auto& reserved : ReservedTimes)
+	for (auto& reserved : reservedTimes)
 	{
-		if (reserved.tm_year == Time->tm_year &&
-			reserved.tm_mon == Time->tm_mon &&
-			reserved.tm_mday == Time->tm_mday &&
-			reserved.tm_hour == Time->tm_hour)
+		if (reserved.tm_year == time->tm_year &&
+			reserved.tm_mon == time->tm_mon &&
+			reserved.tm_mday == time->tm_mday &&
+			reserved.tm_hour == time->tm_hour)
 		{
 			return false; 
 		}
 	}
 	return true; 
+}
+vector<tm> PadelCourt::getReservedTimes() {
+    return reservedTimes;
 }
