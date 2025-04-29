@@ -19,6 +19,7 @@ PadelCourtManagement();
    void DeleteCourt(int CourtId);
    vector<PadelCourt*> SearchCourt(tm* time, string location);
    string toLine(PadelCourt padelCourt);
+   vector<PadelCourt> getAllCourts();
    string loadDataFromFile();
    string saveDataToFile();
 };

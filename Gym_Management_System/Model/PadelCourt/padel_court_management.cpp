@@ -95,7 +95,10 @@ void PadelCourtManagement::DeleteCourt(int CourtId)
 	}
 }
 
-
+vector<PadelCourt> PadelCourtManagement::getAllCourts()
+{
+	return courts;
+}
 vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* time, string location)
 {
 	vector<PadelCourt*> foundCourts;
