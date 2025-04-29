@@ -14,9 +14,9 @@ private:
     float price;
     vector<tm> reservedTimes;
 public:
-    PadelCourt(bool IsAvailable, string Location, float Price);
+    PadelCourt( string Location, float Price);
     PadelCourt(string line);
-    PadelCourt toLine(PadelCourt padelCourt);
+    
     void setAutomaticId();
 
     void setLocation(string Location);
