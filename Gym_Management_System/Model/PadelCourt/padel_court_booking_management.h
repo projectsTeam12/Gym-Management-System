@@ -10,12 +10,17 @@ using namespace std;
 class PadelCourtBookingManagement
 {
 private:
-    multimap<int, pair<int, tm*>>courtBookings;
+   static multimap<int, pair<int, tm*>>courtBookings;
 public:
+	static const string courtBookingsFilePath;
     string bookCourt(int memberId, int courtId, tm* bookingTime);
     string cancelBooking(int memberId, int courtId, tm* bookingTime);
     vector<pair<int, tm*>> getBookingByMember(int memberId);
-    bool reschedualingCourtBooking(int memberId, int courtId, tm* bookingTime, tm* newTime);
+    string reschedualingCourtBooking(int memberId, int courtId, tm* bookingTime, tm* newTime);
+    string toLine(pair<int, pair<int, tm*>> booking);
+
+    string loadDataFromFile();
+    string saveDataToFile();
 };
 
 #endif // PADELCOURTBOOKINGMANAGEMENT_H

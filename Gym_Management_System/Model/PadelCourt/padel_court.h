@@ -12,8 +12,10 @@ private:
     int id; // added automatically
     string location;
     float price;
-    vector<tm> reservedTimes;
+
 public:
+    vector<tm> reservedTimes;
+
     static const string idFilePath;
     PadelCourt( string Location, float Price);
     PadelCourt(string line);

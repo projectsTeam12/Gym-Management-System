@@ -4,9 +4,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
+#include <ctime>
 using namespace std;
 
 const string PadelCourtManagement::courtsFilePath = "courts.txt";
+ 
+vector<PadelCourt> PadelCourtManagement::courts = {};
 
 PadelCourtManagement::PadelCourtManagement() {
 	
@@ -32,12 +36,12 @@ string PadelCourtManagement::loadDataFromFile() {
 			return "Courts Loaded";
 		}
 		else {
-			return "Unable to open the file 'courts.txt'";
+			return "Unable to open the file " + courtsFilePath;
 		}
 	}
 	catch (const std::exception&)
 	{
-		return "Oops! An error happended while loading the courts from 'courts.txt' file";
+		return "Oops! An error happended while loading the courts from " + courtsFilePath + " file";
 	}
 	
 }
@@ -50,7 +54,6 @@ string PadelCourtManagement::saveDataToFile() {
 		ofstream file;
 		file.open(courtsFilePath);
 		if (file.is_open()) {
-			string line;
 			for (auto& court : courts)
 			{
 				file << toLine(court) << endl;
@@ -59,12 +62,12 @@ string PadelCourtManagement::saveDataToFile() {
 			return "Courts Loaded";
 		}
 		else {
-			return "Unable to open the file 'courts.txt'";
+			return "Unable to open the file " + courtsFilePath;
 		}
 	}
 	catch (const std::exception&)
 	{
-		return "Oops! An error happended while saving the courts to 'courts.txt' file";
+		return "Oops! An error happended while saving the courts to " + courtsFilePath + "file";
 	}
 }
 
