@@ -11,6 +11,14 @@ string PadelCourtBookingManagement::bookCourt(int memberId, int courtId, tm* boo
 {
 	try
 	{
+		auto it = courtBookings.begin();
+		for (; it != courtBookings.end(); ++it)
+		{
+			if (it->second.first == courtId && it->second.second == bookingTime)
+			{
+				return "Court is already booked at this time.";
+			}
+		}
 		courtBookings.insert({memberId, {courtId, bookingTime}});
 		return "Booking successful";
 	}
