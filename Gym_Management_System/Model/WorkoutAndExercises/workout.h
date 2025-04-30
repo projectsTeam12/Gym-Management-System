@@ -2,39 +2,44 @@
 #define WORKOUT_H
 
 #pragma once
-#include "Model/Stuff/stDate.h"
-#include "Model/WorkoutAndExercises/Exercise.h"
+#include "Exercise.h"
 #include <list>
 using namespace std;
+
 class Workout
 {
 private:
     int Id;
     static int nextId;
     string WorkoutType;
-    stDate date;
     int Duration;
-    list<Exercise>Exercises;
+    list<Exercise> Exercises; 
+
 public:
     Workout();
-    Workout(int Id, string WorkoutType, stDate date, int Duration, list<Workout>Workouts);
-    Workout(string WorkoutType, stDate date, int Duration);
+    Workout(int Id, string WorkoutType, int Duration, list<Exercise> Exercises); 
+    Workout(string WorkoutType, int Duration);
     Workout(const Workout& other);
-
+    void setId(int Id);
     void setWorkoutType(string WorkoutType);
-    void setDate(stDate date);
     void setDuration(int Duration);
-    void setWorkoutslist(list<Workout>Workouts);
+    void setExercisesList(list<Exercise> Exercises);
 
-    int getId();
-    string getWorkoutType();
-    stDate getDate();
-    int getDuration();
-    list<Workout> getWorkouts();
+    int getId() const;
+    string getWorkoutType() const ;
+    int getDuration()const;
+    list<Exercise> getExercises() const; 
 
-    void AddExercise(Exercise Ex);
+    void AddExercise(Exercise Ex);// file ??????
+
+    // ------------------------------------
+    string ToLine1() const;
+    static void SaveToFile1(const string& filename, const list<string>& vData);
+    static list<string> RecordtoLine1(const list<Workout>& Workouts);
+    // ------------------------------------
+    static void SaveWorkoutToFile(const string& filename, const list<Workout>& workouts);
+
+
 };
-
-
 
 #endif // WORKOUT_H
