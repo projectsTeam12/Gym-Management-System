@@ -7,14 +7,13 @@
 #include<vector>
 class Manager : public Person
 {private:
-	double Revenue;
 	vector<string> offers;
 
 public:
 	Manager(string name, string date, string phone, string username, string password);
 	vector<padelcourt> getAllCourts();
 	void add_offers(string offer);
-	double calc_rev();
+        float calculateTotalSubscriptions()
         void AddCoach(Coach coach);
         void AddReceptionist(Receptionist receptionist);
         bool DeleteEmployee(int EmployeeId, enRole role);
