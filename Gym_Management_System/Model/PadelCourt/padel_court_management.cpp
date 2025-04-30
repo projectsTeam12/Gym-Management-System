@@ -6,6 +6,7 @@
 #include <string>
 using namespace std;
 
+const string PadelCourtManagement::courtsFilePath = "courts.txt";
 
 PadelCourtManagement::PadelCourtManagement() {
 	
@@ -20,7 +21,7 @@ string PadelCourtManagement::loadDataFromFile() {
 	try
 	{
 		ifstream file;
-		file.open("courts.txt");
+		file.open(courtsFilePath);
 		if (file.is_open()) {
 			string line;
 			while (file >> line) {
@@ -47,7 +48,7 @@ string PadelCourtManagement::saveDataToFile() {
 	try
 	{
 		ofstream file;
-		file.open("courts.txt");
+		file.open(courtsFilePath);
 		if (file.is_open()) {
 			string line;
 			for (auto& court : courts)

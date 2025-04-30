@@ -12,6 +12,7 @@ class PadelCourtManagement
 private:
   vector<PadelCourt> courts;
 public:
+	static const string courtsFilePath;
 PadelCourtManagement();
 ~PadelCourtManagement();
 
