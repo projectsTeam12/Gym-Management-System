@@ -74,12 +74,10 @@ string PadelCourtManagement::saveDataToFile() {
 
 string PadelCourtManagement::addCourt(string location, float price)
 {
-	//fstream file;
-	//file.open("courts.txt", ios::out | ios::app);
+	
 	PadelCourt court = PadelCourt(location, price);
 	courts.push_back(court);
-	//file << toLine(court);
-	//file.close();
+	
 	return "Court Added";
 }
 
