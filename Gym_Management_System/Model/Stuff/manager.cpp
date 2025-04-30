@@ -6,6 +6,13 @@
 #include<iostream>
 
 
+Manager::Manager(string name, string date, string phone, string username, string password) {
+    this->setName(name);
+    this->setDate(date);
+    this->setPhone(phone);
+    this->setUserName(username);
+    this->setPassWord(password);
+}
 void Manager::add_offers(string offer) {
 	offers.push_back(offer);
 }
