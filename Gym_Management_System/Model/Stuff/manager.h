@@ -1,5 +1,6 @@
 #pragma once
 #include"person.h"
+#include"stuffmanagement.h"
 #include<vector>
 class Manager : public Person
 {private:
