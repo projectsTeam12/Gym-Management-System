@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+const string PadelCourt::idFilePath = "id.txt";
+
 PadelCourt::PadelCourt(string Location, float Price)
 {
 	setAutomaticId();
@@ -48,12 +50,12 @@ PadelCourt::PadelCourt(string line)
 }	
 void PadelCourt::setAutomaticId() {
     ifstream readFile;
-    readFile.open("id.txt");
+    readFile.open(idFilePath);
     if (readFile.is_open()) {
         readFile >> this->id;
         readFile.close();
         ofstream writeFile;
-        writeFile.open("id.txt");
+        writeFile.open(idFilePath);
         writeFile << this->id + 1;
         writeFile.close();
     }

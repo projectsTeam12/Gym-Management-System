@@ -14,6 +14,7 @@ private:
     float price;
     vector<tm> reservedTimes;
 public:
+    static const string idFilePath;
     PadelCourt( string Location, float Price);
     PadelCourt(string line);
     
