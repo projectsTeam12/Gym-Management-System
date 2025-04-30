@@ -17,7 +17,13 @@ void Manager::add_offers(string offer) {
 	offers.push_back(offer);
 }
 
-void Manager::calc_rev() { }
+    float Manager :: calculateTotalSubscriptions() {
+        float total = 0.0f;
+        for (const auto& member : Members) {
+            total += member.getSubscription().getPrice();
+        }
+        return total;
+    }
 vector<padelcourt> Manager :: getAllCourts(){
 	return PadelCourtManagement.getAllCourts();
 }
