@@ -1,6 +1,9 @@
 #pragma once
 #include"person.h"
 #include"stuffmanagement.h"
+#include"membersmanegement.h"
+#include"classesmanagement.h"
+#include"padel_court_management.h"
 #include<vector>
 class Manager : public Person
 {private:
@@ -9,12 +12,12 @@ class Manager : public Person
 
 public:
 	Manager(string name, string date, string phone, string username, string password);
-	void View_Courts();  
+	vector<padelcourt> getAllCourts();
 	void add_offers(string offer);
 	double calc_rev();
         void AddCoach(Coach coach);
         void AddReceptionist(Receptionist receptionist);
-        void DeleteEmployee(int EmployeeId, enRole role);
+        bool DeleteEmployee(int EmployeeId, enRole role);
         Coach SearchCoach(int CoachId);
         Receptionist SearchReceptionist(int ReceptionistId);
         vector<GymClass*> GetAllClasses();
