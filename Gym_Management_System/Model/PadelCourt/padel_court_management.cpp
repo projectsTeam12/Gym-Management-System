@@ -4,8 +4,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
+#include <ctime>
 using namespace std;
 
+const string PadelCourtManagement::courtsFilePath = "courts.txt";
+ 
+vector<PadelCourt> PadelCourtManagement::courts = {};
 
 PadelCourtManagement::PadelCourtManagement() {
 	
@@ -20,10 +25,10 @@ string PadelCourtManagement::loadDataFromFile() {
 	try
 	{
 		ifstream file;
-		file.open("courts.txt");
+		file.open(courtsFilePath);
 		if (file.is_open()) {
 			string line;
-			while (file >> line) {
+			while (getline(file, line)) {
 				PadelCourt court = PadelCourt(line);
 				courts.push_back(court);
 			}
@@ -31,12 +36,12 @@ string PadelCourtManagement::loadDataFromFile() {
 			return "Courts Loaded";
 		}
 		else {
-			return "Unable to open the file 'courts.txt'";
+			return "Unable to open the file " + courtsFilePath;
 		}
 	}
 	catch (const std::exception&)
 	{
-		return "Oops! An error happended while loading the courts from 'courts.txt' file";
+		return "Oops! An error happended while loading the courts from " + courtsFilePath + " file";
 	}
 	
 }
@@ -47,23 +52,22 @@ string PadelCourtManagement::saveDataToFile() {
 	try
 	{
 		ofstream file;
-		file.open("courts.txt");
+		file.open(courtsFilePath);
 		if (file.is_open()) {
-			string line;
 			for (auto& court : courts)
 			{
 				file << toLine(court) << endl;
 			}
 			file.close();
-			return "Courts Loaded";
+			return "Courts Saved";
 		}
 		else {
-			return "Unable to open the file 'courts.txt'";
+			return "Unable to open the file " + courtsFilePath;
 		}
 	}
 	catch (const std::exception&)
 	{
-		return "Oops! An error happended while saving the courts to 'courts.txt' file";
+		return "Oops! An error happended while saving the courts to " + courtsFilePath + "file";
 	}
 }
 
@@ -74,12 +78,10 @@ string PadelCourtManagement::saveDataToFile() {
 
 string PadelCourtManagement::addCourt(string location, float price)
 {
-	//fstream file;
-	//file.open("courts.txt", ios::out | ios::app);
+	
 	PadelCourt court = PadelCourt(location, price);
 	courts.push_back(court);
-	//file << toLine(court);
-	//file.close();
+	
 	return "Court Added";
 }
 
@@ -99,6 +101,7 @@ vector<PadelCourt> PadelCourtManagement::getAllCourts()
 {
 	return courts;
 }
+
 vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* time, string location)
 {
 	vector<PadelCourt*> foundCourts;

@@ -9,9 +9,9 @@
 using namespace std;
 class PadelCourtManagement
 {
-private:
-  vector<PadelCourt> courts;
 public:
+	static vector<PadelCourt> courts;
+	static const string courtsFilePath;
 PadelCourtManagement();
 ~PadelCourtManagement();
 
