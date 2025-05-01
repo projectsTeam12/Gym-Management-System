@@ -180,7 +180,7 @@ string PadelCourtBookingManagement::toLine(pair<int, pair<int, tm*>> booking) {
 string PadelCourtBookingManagement::loadDataFromFile() {
 
 	try {
-		ifstream file("test.txt");
+		ifstream file(courtBookingsFilePath);
 		if (!file.is_open()) {
 			return "Unable to open the file " + courtBookingsFilePath;
 		}
