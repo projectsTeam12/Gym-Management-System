@@ -10,7 +10,7 @@ using namespace std;
 class PadelCourtBookingManagement
 {
 private:
-   static multimap<int, pair<int, tm*>>courtBookings;
+   static multimap<int, pair<int, tm*>> courtBookings;
 public:
 	static const string courtBookingsFilePath;
     string bookCourt(int memberId, int courtId, tm* bookingTime);

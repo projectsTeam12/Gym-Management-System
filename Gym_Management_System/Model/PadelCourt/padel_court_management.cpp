@@ -28,7 +28,7 @@ string PadelCourtManagement::loadDataFromFile() {
 		file.open(courtsFilePath);
 		if (file.is_open()) {
 			string line;
-			while (file >> line) {
+			while (getline(file, line)) {
 				PadelCourt court = PadelCourt(line);
 				courts.push_back(court);
 			}
@@ -59,7 +59,7 @@ string PadelCourtManagement::saveDataToFile() {
 				file << toLine(court) << endl;
 			}
 			file.close();
-			return "Courts Loaded";
+			return "Courts Saved";
 		}
 		else {
 			return "Unable to open the file " + courtsFilePath;
@@ -101,6 +101,7 @@ vector<PadelCourt> PadelCourtManagement::getAllCourts()
 {
 	return courts;
 }
+
 vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* time, string location)
 {
 	vector<PadelCourt*> foundCourts;

@@ -165,43 +165,65 @@ string PadelCourtBookingManagement::reschedualingCourtBooking(int memberId, int 
 	}
 }
 
-string toLine(pair<int, pair<int, tm*>> booking) {
+string PadelCourtBookingManagement::toLine(pair<int, pair<int, tm*>> booking) {
 	int memberId = booking.first;
 	int courtId = booking.second.first;
-	tm* timeStruct = booking.second.second;
+	tm* timeStruct = booking.second.second;	
 
 	string line = to_string(memberId) + "," + to_string(courtId) + "," +
 		to_string(timeStruct->tm_year) + "-" + to_string(timeStruct->tm_mon) + "-" +
 		to_string(timeStruct->tm_mday) + " " + to_string(timeStruct->tm_hour);
+	return line;
 }
 
 
-//string PadelCourtBookingManagement::loadDataFromFile() {
-//	// Load courts including reserved times from file
-//	try
-//	{
-//		ifstream file;
-//		file.open(courtBookingsFilePath);
-//		if (file.is_open()) {
-//			string line;
-//			while (file >> line) {
-//				PadelCourt court = PadelCourt(line);
-//				courts.push_back(court);
-//			}
-//			file.close();
-//			return "Courts Loaded";
-//		}
-//		else {
-//			return "Unable to open the file 'courts.txt'";
-//		}
-//	}
-//	catch (const std::exception&)
-//	{
-//		return "Oops! An error happended while loading the courts from 'courts.txt' file";
-//	}
-//}
-//
-//
+string PadelCourtBookingManagement::loadDataFromFile() {
+
+	try {
+		ifstream file("test.txt");
+		if (!file.is_open()) {
+			return "Unable to open the file " + courtBookingsFilePath;
+		}
+
+		string line;
+		while (getline(file, line)) {
+
+			size_t firstComma = line.find(',');
+			size_t secondComma = line.find(',', firstComma + 1);
+			size_t spacePos = line.find(' ', secondComma + 1);
+
+			if (firstComma == string::npos || secondComma == string::npos || spacePos == string::npos)
+				continue;
+			string dateStr = line.substr(secondComma + 1, spacePos - secondComma - 1);
+
+			// Convert to integers
+			int memberId = stoi(line.substr(0, firstComma));
+			int courtId = stoi(line.substr(firstComma + 1, secondComma - firstComma - 1));
+			int year, month, day;
+			sscanf(dateStr.c_str(), "%d-%d-%d", &year, &month, &day);
+			int hour = stoi(line.substr(spacePos + 1));
+
+			tm* timeStruct = new tm();
+			timeStruct->tm_year = year;
+			timeStruct->tm_mon = month;
+			timeStruct->tm_wday = day;
+			timeStruct->tm_hour = hour;
+			timeStruct->tm_min = 0;
+			timeStruct->tm_sec = 0;
+
+			courtBookings.insert({ memberId, { courtId, timeStruct } });
+		}
+
+		file.close();
+		return "Court bookings loaded successfully.";
+	}
+	catch (const std::exception&) {
+		return "Oops! An error happened while loading the court bookings from  file.";
+	}
+}
+
+
+
 string PadelCourtBookingManagement::saveDataToFile() {
 	// save court bookings to file
 	try
@@ -214,7 +236,7 @@ string PadelCourtBookingManagement::saveDataToFile() {
 				file << toLine(booking) << endl;
 			}
 			file.close();
-			return "Court Bookings Loaded";
+			return "Court Bookings Saved";
 		}
 		else {
 			return "Unable to open the file " + courtBookingsFilePath;
