@@ -13,14 +13,14 @@ private:
    static multimap<int, pair<int, tm*>> courtBookings;
 public:
 	static const string courtBookingsFilePath;
-    string bookCourt(int memberId, int courtId, tm* bookingTime);
-    string cancelBooking(int memberId, int courtId, tm* bookingTime);
+    void bookCourt(int memberId, int courtId, tm* bookingTime);
+    void cancelBooking(int memberId, int courtId, tm* bookingTime);
     vector<pair<int, tm*>> getBookingByMember(int memberId);
-    string reschedualingCourtBooking(int memberId, int courtId, tm* bookingTime, tm* newTime);
+    void reschedualingCourtBooking(int memberId, int courtId, tm* bookingTime, tm* newTime);
     string toLine(pair<int, pair<int, tm*>> booking);
 
-    string loadDataFromFile();
-    string saveDataToFile();
+    vector<string> loadDataFromFile();
+    void saveDataToFile(vector<string> lines);
 };
 
 #endif // PADELCOURTBOOKINGMANAGEMENT_H
