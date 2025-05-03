@@ -20,55 +20,36 @@ PadelCourtManagement::~PadelCourtManagement() {
 
 }
 
-string PadelCourtManagement::loadDataFromFile() {
+vector<string> PadelCourtManagement::loadDataFromFile() {
 	// Load courts including reserved times from file
-	try
-	{
-		ifstream file;
-		file.open(courtsFilePath);
-		if (file.is_open()) {
-			string line;
-			while (getline(file, line)) {
-				PadelCourt court = PadelCourt(line);
-				courts.push_back(court);
-			}
-			file.close();
-			return "Courts Loaded";
+	vector<string> lines;
+	ifstream file;
+	file.open(courtsFilePath);
+	if (file.is_open()) {
+		string line;
+		while (getline(file, line)) {
+			lines.push_back(line);
+			/*PadelCourt court = PadelCourt(line);
+			courts.push_back(court);*/
 		}
-		else {
-			return "Unable to open the file " + courtsFilePath;
-		}
+		file.close();
 	}
-	catch (const std::exception&)
-	{
-		return "Oops! An error happended while loading the courts from " + courtsFilePath + " file";
-	}
-	
+	return lines;
 }
 
 
-string PadelCourtManagement::saveDataToFile() {
+void PadelCourtManagement::saveDataToFile(vector<string> lines) {
 	// save courts including reserved times to file
-	try
-	{
 		ofstream file;
 		file.open(courtsFilePath);
 		if (file.is_open()) {
-			for (auto& court : courts)
+			for (auto& line : lines)
 			{
-				file << toLine(court) << endl;
+				//file << toLine(court) << endl;
+				file << line << endl;
 			}
 			file.close();
-			return "Courts Saved";
 		}
-		else {
-			return "Unable to open the file " + courtsFilePath;
-		}
-	}
-	catch (const std::exception&)
-	{
-		return "Oops! An error happended while saving the courts to " + courtsFilePath + "file";
-	}
 }
 
 
@@ -76,13 +57,10 @@ string PadelCourtManagement::saveDataToFile() {
 
 
 
-string PadelCourtManagement::addCourt(string location, float price)
+void PadelCourtManagement::addCourt(string location, float price)
 {
-	
 	PadelCourt court = PadelCourt(location, price);
 	courts.push_back(court);
-	
-	return "Court Added";
 }
 
 void PadelCourtManagement::DeleteCourt(int CourtId)
@@ -102,15 +80,15 @@ vector<PadelCourt> PadelCourtManagement::getAllCourts()
 	return courts;
 }
 
-vector<PadelCourt*> PadelCourtManagement::SearchCourt(tm* time, string location)
+vector<PadelCourt> PadelCourtManagement::SearchCourt(tm* time, string location)
 {
-	vector<PadelCourt*> foundCourts;
+	vector<PadelCourt> foundCourts;
 
 	for (auto& court : courts)
 	{
 		if (court.getLocation() == location && court.isAvailableAt(time))
 		{
-			foundCourts.push_back(&court);
+			foundCourts.push_back(court);
 		}
 	}
 	return foundCourts;

@@ -15,13 +15,13 @@ public:
 PadelCourtManagement();
 ~PadelCourtManagement();
 
-   string addCourt(string location, float price);
+	void addCourt(string location, float price);
    void DeleteCourt(int CourtId);
-   vector<PadelCourt*> SearchCourt(tm* time, string location);
+   vector<PadelCourt> SearchCourt(tm* time, string location);
    string toLine(PadelCourt padelCourt);
    vector<PadelCourt> getAllCourts();
-   string loadDataFromFile();
-   string saveDataToFile();
+   vector<string> loadDataFromFile();
+   void saveDataToFile(vector<string> lines);
 };
 
 #endif // PADELCOURTMANAGEMENT_H
