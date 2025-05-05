@@ -26,7 +26,6 @@ void PadelCourtBookingManagement::bookCourt(int memberId, int courtId, tm* booki
 			break;
 		}
 	}
-	
 }
 
 
@@ -65,6 +64,8 @@ void PadelCourtBookingManagement::cancelBooking(int memberId, int courtId, tm* b
 		}
 	}
 }
+
+
 vector<pair<int, tm*>> PadelCourtBookingManagement::getBookingByMember(int memberId) {
 	vector<pair<int, tm*>> bookings;
 	auto it = courtBookings.begin();
